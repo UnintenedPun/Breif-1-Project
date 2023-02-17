@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class LevellingSystem : MonoBehaviour
 {
-    public int curretLevel; // Our current level.
+    public int currentLevel; // Our current level.
 
     public int currentXp; // The current amount of xp we have accumulated.
 
@@ -16,6 +16,15 @@ public class LevellingSystem : MonoBehaviour
     private void Start()
     {
         // start with some psudeo code based on your feature spec and don't forget comments.
+        // setting level to 1
+        currentLevel = 1;
+        // setting experiance to 0
+        currentXp = 0;
+        // thrershhold to be our starting level times 100
+        currentXPThreshold *= currentLevel;
+        // Values printed out
+        Debug.Log(" Current Level: " + currentLevel + " Current Experiance: " + currentXp + " Current ThreshHold Needed: " + currentXPThreshold);
+
 
     }
 }

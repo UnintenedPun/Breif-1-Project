@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.iOS;
 
 /// <summary>
 /// This class holds all the logic for our battle system, so being able to calculate the percentage chance of us winning.
@@ -16,6 +17,9 @@ public class BattleSystem : MonoBehaviour
         int playerOneStyle = 0;
         int playerOneLuck = 0;
         int playerOneRyhtm = 0;
+        
+        // Determine player one stats using the other script
+        playerOneStyle = style;
 
         //player two
         int playerTwoStyle = 0;
