@@ -14,58 +14,61 @@ public class BattleSystem : MonoBehaviour
     {
         // start with some psudeo code based on your feature spec and don't forget comments.
 
-        //player one
-        int playerOneStyle = 0;
-        int playerOneLuck = 0;
-        int playerOneRythm = 0;
-
         // Generate random stats for player one
-        playerOneStyle = Random.Range(1, 11);
-        playerOneLuck = Random.Range(1, 11);
-        playerOneRythm = Random.Range(1, 11);
-        Debug.Log("Player One Style is " + playerOneStyle + " Luck Is " + playerOneLuck + " Rythm Is " + playerOneRythm);
-
-        //player two
-        int playerTwoStyle = 0;
-        int playerTwoLuck = 0;
-        int playerTwoRyhtm = 0;
-
+        int playerOneStyle = Random.Range(1, 11);
+        int playerOneLuck = Random.Range(1, 11);
+        int playerOneRythm = Random.Range(1, 11);
+        
         // Generate random stats for player two
-        playerTwoStyle = Random.Range(1, 11);
-        playerTwoLuck = Random.Range(1, 11);
-        playerTwoRyhtm = Random.Range(1, 11);
+        int playerTwoStyle = Random.Range(1, 11);
+        int playerTwoLuck = Random.Range(1, 11);
+        int playerTwoRyhtm = Random.Range(1, 11);
+
+        // Print Stat Levels
+        Debug.Log(" Player One Style is " + playerOneStyle + " Luck Is " + playerOneLuck + " Rythm Is " + playerOneRythm);
         Debug.Log(" PLayer Two Style Is " + playerTwoStyle + " Luck Is " + playerTwoLuck + " Rythm Is " + playerTwoRyhtm);
+        
 
         // Based on each stat needs to calculate a power level
         int playerOnePowerLevel = playerOneStyle + playerOneLuck + playerOneRythm;
         int playerTwoPowerLevel = playerTwoStyle + playerTwoLuck + playerTwoRyhtm;
 
-        // Chance too win
+        // Print Power Levels
+        Debug.Log(" Player One Power Is " + playerOnePowerLevel);
+        Debug.Log(" Player Two Power Is " + playerTwoPowerLevel);
         
-        int playerTwoChanceToWin = 0;
-        int playerOneChanceToWin = 0;
-
+        // Calculating total power
         int totalPower = playerOnePowerLevel + playerTwoPowerLevel;
-        playerOneChanceToWin = (int) (((float)playerOnePowerLevel / (float)totalPower) * 100);
-        playerTwoChanceToWin = (int) (((float)totalPower / (float)playerTwoPowerLevel) * 100);
 
-        int diFf = 0;
-        int playerOneExp = 0;
-        int playerTwoExp = 0;
+        // Print total power
+        Debug.Log(" Combined Power " + totalPower);
 
+        // Calculating chance to win for each player
+        int playerOneChanceToWin = (int) (((float)playerOnePowerLevel / (int)totalPower) * 100);
+        int playerTwoChanceToWin = (int) (((float)playerTwoPowerLevel / (int)totalPower) * 100);
+
+        // Print chance to win for each player
+        Debug.Log(" Player One Chance To Win " + playerOneChanceToWin);
+        Debug.Log(" Player Two Chance To Win " + playerTwoChanceToWin);
+
+        // Exp granted for battle
+        int playerOneExp = 10;
+        int playerTwoExp = 10;
+        
+        // Win - Lose - Draw senerioes
         if (playerOneChanceToWin < playerTwoChanceToWin)
         {
             Debug.Log(" Player Two WINS! ");
-            diFf = playerTwoChanceToWin - playerOneChanceToWin;
-            Debug.Log(" Percent chance differance " + diFf);
+            int diFf = playerTwoChanceToWin - playerOneChanceToWin;
+            Debug.Log(" Percent chance differance " + diFf + "%");
             playerTwoExp += diFf;
             Debug.Log(" Exp Gained is " + playerTwoExp);
         }
         else if (playerOneChanceToWin > playerTwoChanceToWin)
         {
             Debug.Log(" Player One Wins! ");
-            diFf = playerOneChanceToWin - playerTwoChanceToWin;
-            Debug.Log(" Percent Chance Differnce " + diFf);
+            int diFf = playerOneChanceToWin - playerTwoChanceToWin;
+            Debug.Log(" Percent Chance Differnce " + diFf + "%");
             playerOneExp += diFf;
             Debug.Log(" Exp Gained is " + playerOneExp);
          

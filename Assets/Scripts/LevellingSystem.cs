@@ -7,36 +7,58 @@ using UnityEngine;
 /// </summary>
 public class LevellingSystem : MonoBehaviour
 {
-    public int currentLevel = 1; // Our current level.
-
-    public int currentXp = 0; // The current amount of xp we have accumulated.
-
-    public int currentXPThreshold = 0; // The amount of xp required to level up.
-
     private void Start()
     {
         // start with some psudeo code based on your feature spec and don't forget comments.
+
         // setting level to 1
-        currentLevel = 1;
+        int currentLevel = 1;
+
         // setting experiance to 0
-        currentXp = 0;
-        // thrershhold to be our starting level times 100
-        currentXPThreshold = currentLevel * 100;
+        int currentXp = 0;
+
+        // threshhold to be our starting level times 100
+        int currentXPThreshold = currentLevel * 100;
+
         // Values printed out
         Debug.Log(" Current Level: " + currentLevel);
         Debug.Log(" Current Experiance: " + currentXp);
         Debug.Log(" Current ThreshHold: " + currentXPThreshold);
 
-        // Level up has occured "100" points added
-        Debug.Log(" Level Up ");
-        currentXp = Random.Range(0, 101);
-        if (currentLevel < 1)
+        //assinging random value for exp to level up
+        currentXp = Random.Range(60, 151);
+        Debug.Log(" Exp Giving After Battle Is " + currentXp);
+
+        // Check to see if our current xp is equal to our threshold
+        if (currentXp >= currentXPThreshold)
         {
-            currentXp *= currentLevel;
-
-
+            currentLevel += 1;
+            Debug.Log(" Level Up ");
+            currentXp -= currentXPThreshold;
+            currentXPThreshold= currentLevel * 100;
+            Debug.Log(" Current Level: " + currentLevel);
+            Debug.Log(" Current Experiance: " + currentXp);
+            Debug.Log(" Current ThreshHold: " + currentXPThreshold);
         }
-        if (Input.GetKeyUp.(KeyCode.Return))
+        else if (currentXp <= currentXPThreshold)
+        {
+            Debug.Log(" No Level Up ");
+            Debug.Log(" Current Level: " + currentLevel);
+            Debug.Log(" Current Experiance: " + currentXp);
+            Debug.Log(" Current ThreshHold: " + currentXPThreshold);
+        }
 
+           
+            
+            
+
+            
+    
+        // Level up has occured "100" points added
+        
+        // add 100 points too total xp
+        // increase level by 1
+        // increase xp threshold
+        
     }
 }

@@ -46,7 +46,7 @@ public class StatsSystem : MonoBehaviour
         rhythm = (int) ((float)agility * 0.5);
 
         // Print these Values Out
-        Debug.Log(" My Style is - " + style + " My Rhythm is - " + rhythm + " My Luck is - " + luck);
+        Debug.Log(" My Style is " + style + " My Rhythm is " + rhythm + " My Luck is " + luck);
 
         
         Debug.Log(" Level Up ");
