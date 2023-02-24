@@ -7,11 +7,11 @@ using UnityEngine;
 /// </summary>
 public class LevellingSystem : MonoBehaviour
 {
-    public int currentLevel; // Our current level.
+    public int currentLevel = 1; // Our current level.
 
-    public int currentXp; // The current amount of xp we have accumulated.
+    public int currentXp = 0; // The current amount of xp we have accumulated.
 
-    public int currentXPThreshold = 10; // The amount of xp required to level up.
+    public int currentXPThreshold = 0; // The amount of xp required to level up.
 
     private void Start()
     {
@@ -21,10 +21,22 @@ public class LevellingSystem : MonoBehaviour
         // setting experiance to 0
         currentXp = 0;
         // thrershhold to be our starting level times 100
-        currentXPThreshold *= currentLevel;
+        currentXPThreshold = currentLevel * 100;
         // Values printed out
-        Debug.Log(" Current Level: " + currentLevel + " Current Experiance: " + currentXp + " Current ThreshHold Needed: " + currentXPThreshold);
+        Debug.Log(" Current Level: " + currentLevel);
+        Debug.Log(" Current Experiance: " + currentXp);
+        Debug.Log(" Current ThreshHold: " + currentXPThreshold);
 
+        // Level up has occured "100" points added
+        Debug.Log(" Level Up ");
+        currentXp = Random.Range(0, 101);
+        if (currentLevel < 1)
+        {
+            currentXp *= currentLevel;
+
+
+        }
+        if (Input.GetKeyUp.(KeyCode.Return))
 
     }
 }

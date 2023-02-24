@@ -1,6 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.XR;
 
 /// <summary>
 /// This class holds all the logic for our stats system, so that includes logic to handle generating starting physical stats
@@ -15,46 +20,54 @@ public class StatsSystem : MonoBehaviour
 
     // Our variables used to determine our fighting power.
     public int style;
-    public float luck;
-    public float rhythm;
+    public int luck;
+    public int rhythm;
 
     private void Start()
     {
         // start with some psudeo code based on your feature spec and don't forget comments.
+
         // setting random values for the 3 different stats
-        agility= Random.Range(0, 10) +1;
-        intelligence= Random.Range(0, 10) +1;
-        strength= Random.Range(0, 10) + 1;
+
+        agility= UnityEngine.Random.Range(0, 11);
+        intelligence= UnityEngine.Random.Range(0, 11);
+        strength= UnityEngine.Random.Range(0, 11);
+
         // printing the stats out to debug
         Debug.Log(" My Strength is " + strength + " My Agility is " + agility + " My Intelligence is " + intelligence);
-        // Calling formula for dance stats
-        DanceStats();
-        // print these values to debug
-        Debug.Log(" My Style is " + style + " Rhythm is " + rhythm + " Luck is " + luck);
-        // level up equired
-        int additionalPoints = 10;
-        Debug.Log(" This is additional Points " + additionalPoints);
-        // stat points to be disurbuted from strength first
-        Debug.Log(" YOU LEVELED UP!");
-        // formula for 10 stat points
-        strength += additionalPoints - 6;
-        agility += additionalPoints - 6;
-        intelligence += additionalPoints - 8;
-        Debug.Log(" My Strength is " + strength + " My Agility is " + agility + " My Intelligence is " + intelligence);
-        // Calling formula for dance stats
-        DanceStats();
-        Debug.Log(" My Style is " + style + " Rhythm is " + rhythm + " Luck is " + luck);
 
-    }
-    // Formula to calculate dance stats
-    public void DanceStats()
-    {
-        // style to have a 1 : 1 with strength
+        // Each stat should have a conversion rate 
+        // Style - should be based on strength at a rate of  1 : 1
+        // Rhythm - should be based on agility at a rate of  1 : 0.5
+        // Luck - should be based on intelligence at a rate of 1: 1.5
+
         style = strength;
-        // rhythm to have a 1 : 0.5 with agility
-        rhythm = agility * 0.5f;
-        // luck to have a 1 : 1.5 with Intelligence
-        luck = intelligence * 1.5f;
+        luck = (int) ((float)intelligence *1.5);
+        rhythm = (int) ((float)agility * 0.5);
+
+        // Print these Values Out
+        Debug.Log(" My Style is - " + style + " My Rhythm is - " + rhythm + " My Luck is - " + luck);
+
         
+        Debug.Log(" Level Up ");
+
+        // These stat points should be distributed evenly or upon a formula to all stats:
+        
+        // 10 new stat points are awarded on leveling up.
+        agility += 4;
+        intelligence += 2;
+        strength += 4;
+
+        style = strength;
+        luck = (int)((float)intelligence * 1.5);
+        rhythm = (int)((float)agility * 0.5);
+
+        // Upon the stats being assigned,
+        // we need to recalculate the dancing stats as they have increased using the conversion system outlined above.
+        //Print out our new physical and dancing stat values to the console.
+
+        Debug.Log("The New Stats are!");
+        Debug.Log(" My Strength is " + strength + " My Agility is " + agility + " My Intelligence is " + intelligence);
+        Debug.Log(" My Style is " + style + " My Rhythm is " + rhythm + " My Luck is " + luck);
     }
 }

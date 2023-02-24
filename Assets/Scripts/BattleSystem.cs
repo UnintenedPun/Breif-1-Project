@@ -17,61 +17,67 @@ public class BattleSystem : MonoBehaviour
         //player one
         int playerOneStyle = 0;
         int playerOneLuck = 0;
-        int playerOneRyhtm = 0;
+        int playerOneRythm = 0;
 
         // Generate random stats for player one
-            playerOneStyle = Random.Range(0, 11);
-            playerOneLuck = Random.Range(0, 11);
-            playerOneRyhtm = Random.Range(0, 11);
-       
+        playerOneStyle = Random.Range(1, 11);
+        playerOneLuck = Random.Range(1, 11);
+        playerOneRythm = Random.Range(1, 11);
+        Debug.Log("Player One Style is " + playerOneStyle + " Luck Is " + playerOneLuck + " Rythm Is " + playerOneRythm);
+
         //player two
         int playerTwoStyle = 0;
         int playerTwoLuck = 0;
         int playerTwoRyhtm = 0;
 
         // Generate random stats for player two
-            playerTwoStyle = Random.Range(0, 11);
-            playerTwoLuck = Random.Range(0, 11);
-            playerTwoRyhtm = Random.Range(0, 11);
-
-        // Power Levels
-        int playerOnePowerLevel = 0;
-        int playerTwoPowerLevel = 0;
+        playerTwoStyle = Random.Range(1, 11);
+        playerTwoLuck = Random.Range(1, 11);
+        playerTwoRyhtm = Random.Range(1, 11);
+        Debug.Log(" PLayer Two Style Is " + playerTwoStyle + " Luck Is " + playerTwoLuck + " Rythm Is " + playerTwoRyhtm);
 
         // Based on each stat needs to calculate a power level
-        playerOnePowerLevel = playerOneStyle + playerOneLuck + playerOneRyhtm;
-        playerTwoPowerLevel = playerTwoStyle + playerTwoLuck + playerTwoRyhtm;
+        int playerOnePowerLevel = playerOneStyle + playerOneLuck + playerOneRythm;
+        int playerTwoPowerLevel = playerTwoStyle + playerTwoLuck + playerTwoRyhtm;
 
-        // To do this we’ll need to calculate the overall power
-        // divide our characters power levels against this
-        // multiply it by 100.
         // Chance too win
-        int totalPower = 0;
-        totalPower = (playerOnePowerLevel + playerTwoPowerLevel);
-        int playerOneChanceToWin = 0;
-        playerOneChanceToWin = (totalPower / playerOnePowerLevel) * 100;
+        
         int playerTwoChanceToWin = 0;
-        playerTwoChanceToWin = (totalPower / playerTwoPowerLevel) * 100;
+        int playerOneChanceToWin = 0;
+
+        int totalPower = playerOnePowerLevel + playerTwoPowerLevel;
+        playerOneChanceToWin = (int) (((float)playerOnePowerLevel / (float)totalPower) * 100);
+        playerTwoChanceToWin = (int) (((float)totalPower / (float)playerTwoPowerLevel) * 100);
+
+        int diFf = 0;
         int playerOneExp = 0;
         int playerTwoExp = 0;
-        if (playerOneChanceToWin == playerTwoChanceToWin)
+
+        if (playerOneChanceToWin < playerTwoChanceToWin)
         {
-            Debug.Log(" Draw ");
-            playerOneExp += 1;
-            playerTwoExp += 1;
+            Debug.Log(" Player Two WINS! ");
+            diFf = playerTwoChanceToWin - playerOneChanceToWin;
+            Debug.Log(" Percent chance differance " + diFf);
+            playerTwoExp += diFf;
+            Debug.Log(" Exp Gained is " + playerTwoExp);
+        }
+        else if (playerOneChanceToWin > playerTwoChanceToWin)
+        {
+            Debug.Log(" Player One Wins! ");
+            diFf = playerOneChanceToWin - playerTwoChanceToWin;
+            Debug.Log(" Percent Chance Differnce " + diFf);
+            playerOneExp += diFf;
+            Debug.Log(" Exp Gained is " + playerOneExp);
+         
         }
         else
         {
-            if (playerOneExp < playerTwoExp)
-            {
-                Debug.Log(" PLayer Two WINS! ");
-                playerTwoExp += 10;
-            }
-        
-        else if (playerOneExp > playerTwoExp) 
-            {
-            Debug.Log(" PLayer One WINS! ");
-            playerOneExp += 10;
-            }
+            Debug.Log(" Draw! ");
+            playerOneExp += 5;
+            playerTwoExp += 5;
+            Debug.Log(" Player One Exp Gained " + playerOneExp);
+            Debug.Log(" Player Two Exp Gained " + playerTwoExp);
         }
+        
     }
+}
