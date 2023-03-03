@@ -41,9 +41,7 @@ public class StatsSystem : MonoBehaviour
         // Rhythm - should be based on agility at a rate of  1 : 0.5
         // Luck - should be based on intelligence at a rate of 1: 1.5
 
-        style = strength;
-        luck = (int) ((float)intelligence *1.5);
-        rhythm = (int) ((float)agility * 0.5);
+        FindMyStat();
 
         // Print these Values Out
         Debug.Log(" My Style is " + style + " My Rhythm is " + rhythm + " My Luck is " + luck);
@@ -58,9 +56,7 @@ public class StatsSystem : MonoBehaviour
         intelligence += 2;
         strength += 4;
 
-        style = strength;
-        luck = (int)((float)intelligence * 1.5);
-        rhythm = (int)((float)agility * 0.5);
+        FindMyStat();
 
         // Upon the stats being assigned,
         // we need to recalculate the dancing stats as they have increased using the conversion system outlined above.
@@ -69,5 +65,11 @@ public class StatsSystem : MonoBehaviour
         Debug.Log("The New Stats are!");
         Debug.Log(" My Strength is " + strength + " My Agility is " + agility + " My Intelligence is " + intelligence);
         Debug.Log(" My Style is " + style + " My Rhythm is " + rhythm + " My Luck is " + luck);
+    }
+    public void FindMyStat()
+    {
+        style = strength;
+        luck = (int)((float)intelligence * 1.5);
+        rhythm = (int)((float)agility * 0.5);
     }
 }

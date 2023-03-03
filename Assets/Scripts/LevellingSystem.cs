@@ -46,19 +46,6 @@ public class LevellingSystem : MonoBehaviour
             Debug.Log(" Current Level: " + currentLevel);
             Debug.Log(" Current Experiance: " + currentXp);
             Debug.Log(" Current ThreshHold: " + currentXPThreshold);
-        }
-
-           
-            
-            
-
-            
-    
-        // Level up has occured "100" points added
-        
-        // add 100 points too total xp
-        // increase level by 1
-        // increase xp threshold
-        
+        }     
     }
 }
